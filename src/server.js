@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 
 const logger = require('./middleware/logger.js');
+const validate = require('./middleware/validator.js');
 const errors = require('./error-handlers/500.js');
 const notFound = require('./error-handlers/404.js');
 
@@ -11,19 +12,23 @@ const notFound = require('./error-handlers/404.js');
 app.use(express.json());
 app.use(logger);
 
-// QUERY STRINGS -- "OLD WAY"
 // /person ROUTE
-// URL EX: http://localhost300/hello?
-app.get('/person', (req, res) => {
-res.send(`hello ${req.query.user}`);
-});
+app.get('/person', validate, (req, res) => {
+  let name =req.query.name;
+  res.status(200).json({ name });
+})
 
 // EX ROUTE SHOWN FOR THROWING ERROR
 app.get('/bad-route', (req, res) => {
   throw new Error('you have entered error land and it is not safe here. Turn back while you can.');
 });
 
-// REQUEST PARAMETERS -- "NEW WAY", BUT NOT BEING USED NOW
+// QUERY STRINGS -- "OLD WAY"
+// app.get('/person', (req, res) => {
+// res.send(`hello ${req.query.user}`);
+// });
+
+// REQUEST PARAMETERS -- "NEW WAY"
 // app.get('/hello/:user', (req, res) => {
 //  res.send(`hello ${req.params.user}`);
 // });

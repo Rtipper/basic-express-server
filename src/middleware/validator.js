@@ -1,4 +1,12 @@
-'use strict'; 
+'use strict';
 
-// PER DEMO INSTRUCTIONS FROM BRIAN -- NOT INCLUDED FOR THIS LAB PER TIME CONSTRAINTS DURING DEMO
+const validator = (req, res, next) => {
+  let name = req.query.name;
+  if (!name) {
+    next('name not provided') // error handling middleware
+  } else {
+    next(); //validator checked out, move to next. if none, go into route.
+  }
+}
 
+module.exports = validator;
