@@ -61,6 +61,7 @@ Actual time needed to complete: 1 1/2 hours
 
 # Pull Requests
 - https://github.com/Rtipper/basic-express-server/pull/1
+- https://github.com/Rtipper/basic-express-server/pull/2 (final updates after code review)
 
 # Heroku Deployment
 - https://rtipper-basic-express-server.herokuapp.com/
